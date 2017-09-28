@@ -1,30 +1,30 @@
 module.exports = function multiply(first, second) {   var result = [];
   
-    for (var i = 0; i < first.length; i++) { //проход по всем цифрам первого числа
-      for (var j = 0; j < second.length; j++) { //проход по всем цифрам второго числа
+    for (var i = 0; i < first.length; i++) {
+      for (var j = 0; j < second.length; j++) {
         var tmp = i + j;
   
-        if (!result[tmp]) { //если до этого момента еще не рассчитывалась сумма для данного разряда, то инициализируем 0
+        if (!result[tmp]) {
           result[tmp] = 0;
         }
   
-        result[tmp] = result[tmp] + (first[i] * second[j]); //суммируем с предыдущим рассчитанным (суммирование столбиком)
+        result[tmp] = result[tmp] + (first[i] * second[j]);
       }
     }
   
-    for (var k = result.length-1; k >= 0; k--) { //пробегаемся по всем полученным значениям суммы для каждого разряда начиная с конца массива и если сумма больше 10 оставляем только последнюю цифру, остальное переносим в следующий разряд
+    for (var k = result.length-1; k >= 0; k--) {
       if (result[k] >= 10) {
         var temp = String(result[k]);
   
-        if (k == 0) { //для первого разряда если сумма больше 10 добавляем в начало массива разрядов ещё один элемент и инициализируем его 0
+        if (k == 0) {
           result.unshift(0);
           k++;
         }
   
-        result[k] = Number(temp.slice(-1)); //оставляем последнюю цифру
-        result[k-1] = result[k-1] + Number(temp.slice(0, -1)); //остальные цифры переносим в следующий разряд
+        result[k] = Number(temp.slice(-1));
+        result[k-1] = result[k-1] + Number(temp.slice(0, -1));
       }
     }
   
-    return result.join(""); // преобразуем массив в строку
+    return result.join("");
   }
