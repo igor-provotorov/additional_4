@@ -28,3 +28,4 @@ module.exports = function multiply(first, second) {   var result = [];
   
     return result.join("");
   }
+  
